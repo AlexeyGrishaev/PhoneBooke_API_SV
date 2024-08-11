@@ -2,9 +2,9 @@ package okhttp;
 
 
 import com.google.gson.Gson;
-import dto.AddContactDTO;
+
 import dto.ContactDTO;
-import dto.DeleteByIdResponseDTO;
+import dto.MessageDTO;
 import okhttp3.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -43,9 +43,9 @@ public class DeleteContactByIdOkhttp {
                 .addHeader("Authorization",token)
                 .build();
         Response response = client.newCall(request).execute();
-        AddContactDTO addContactDTO = gson.fromJson(response.body().string(),AddContactDTO.class);
+        MessageDTO messageDTO = gson.fromJson(response.body().string(),MessageDTO.class);
 
-        String[] str = addContactDTO.getMessage().split(": ");
+        String[] str = messageDTO.getMessage().split(": ");
         id = str[1];
         System.out.println(id);
 
@@ -62,7 +62,7 @@ public class DeleteContactByIdOkhttp {
                 .build();
 
         Response response = client.newCall(request).execute();
-        DeleteByIdResponseDTO dto = gson.fromJson(response.body().string(),DeleteByIdResponseDTO.class);
+        MessageDTO dto = gson.fromJson(response.body().string(), MessageDTO.class);
         Assert.assertEquals(response.code(),200);
         Assert.assertEquals(dto.getMessage(),"Contact was deleted!");
 

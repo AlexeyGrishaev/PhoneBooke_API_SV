@@ -18,7 +18,7 @@ public class DeleteContactByIdRA {
     String endPoint = "contacts";
 
     String id;
-
+//s
     @BeforeMethod
     private void preCondition() {
         RestAssured.baseURI = "https://contactapp-telran-backend.herokuapp.com";
